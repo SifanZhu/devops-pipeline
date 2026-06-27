@@ -1,0 +1,25 @@
+name: CI pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs: # Define the jobs that will run in the workflow
+  build:
+    runs-on: ubuntu-latest # fast, lightweight, and secure virtual machine
+
+    steps: # Define the actual instructions to be executed one after one 
+      - name: Checkout code
+        uses: actions/checkout@v5 # a prebuilt action
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
